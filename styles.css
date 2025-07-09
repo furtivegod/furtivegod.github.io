@@ -470,6 +470,8 @@ body {
     font-weight: 500;
     transition: var(--transition);
     margin: 0.5rem;
+    border: 0;
+    appearance: none;
 }
 
 .btn.primary {
@@ -944,7 +946,7 @@ body {
 
 .cert-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
@@ -980,7 +982,7 @@ body {
     display: flex;
     align-items: flex-start;
     gap: 1rem;
-    min-height: 80px;
+    /* min-height: 80px; */
 }
 
 .cert-card .badge-wrapper {
@@ -1056,9 +1058,11 @@ body {
 }
 
 .skills-gained {
-    margin-top: 1.5rem;
-    padding-top: 1rem;
+    /* margin-top: 1.5rem; */
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem; 
     border-top: 1px solid rgba(37, 99, 235, 0.2);
+    border-bottom: 1px solid rgba(37, 99, 235, 0.2);
 }
 
 .skills-gained h4 {
@@ -1073,7 +1077,6 @@ body {
     flex-wrap: wrap;
     gap: 0.5rem;
     justify-content: center;
-    margin-top: 0.5rem;
 }
 
 .skills-gained .skill-tags span {
@@ -1100,22 +1103,21 @@ body {
     background: rgba(255, 255, 255, 0.1);
 }
 
-.cert-card .btn {
+.cert-card a.btn {
     color: var(--primary-color);
     text-decoration: none;
     padding: 0;
     background: none;
     font-size: 0.9rem;
-    margin: 0 auto;
     width: fit-content;
-    margin-top: auto;
 }
 
-.cert-card .btn:hover {
+.cert-card a.btn:hover {
     text-decoration: underline;
     background: none;
     color: var(--primary-color);
     transform: none;
+    box-shadow: none;
 }
 
 @media (max-width: 768px) {
@@ -1130,7 +1132,7 @@ body {
     }
     
     .cert-header {
-        min-height: 70px;
+        /* min-height: 70px; */
     }
 
     .cert-card .badge-wrapper {
@@ -1401,7 +1403,7 @@ body {
     }
     
     .cert-header {
-        min-height: 70px;
+        /* min-height: 70px; */
     }
 
     .cert-card .badge-wrapper {
@@ -1782,6 +1784,97 @@ body {
 .contact-actions .social-links a:hover {
     color: var(--primary-color);
     transform: translateY(-3px);
+}
+
+
+.cert-card .expansion-panel {
+    margin-top: 1rem;
+}
+
+.expansion-panel {
+    /* border: 1px solid rgba(37, 99, 235, 0.2); */
+}
+
+.expansion-header {
+    /* transition: background 0.2s; */
+    display: flex;
+    justify-content: center;
+}
+
+.expansion-content {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.5s ease-in;
+    display: flex;
+    flex-direction: column;
+}
+
+.cert-details .expansion-content ul.courses {
+    margin: 0 auto;
+    align-items: flex-start;
+    width: fit-content;
+}
+
+.cert-details .expansion-content ul.courses li {
+    text-align: left;
+}
+
+.expansion-panel.active .expansion-content {
+    padding: 16px;
+    height: fit-content; /* Adjust based on content */
+}
+
+.expansion-header button.btn {
+    margin: 0;
+    padding: 0.25rem;
+    background-color: transparent;
+    width: 100%;
+}
+
+.expansion-header button.btn:hover {
+    color: var(--primary-color);
+    box-shadow: none;
+}
+
+.chevron-icon {
+    position: relative;
+    display: inline-block;
+    height: 1rem;
+    width: 1.5rem;
+    vertical-align: middle;
+}
+
+.chevron-icon .icon-bar {
+    position: absolute;
+    top: 50%;
+    display: block;
+    height: 2px;
+    width: 0.75rem;
+    border-radius: 1000px;
+    transition: all;
+    background-color: currentColor;
+    transition: transform 0.1s ease-in;
+}
+
+.chevron-icon .icon-bar.left {
+    transform-origin: right;
+    transform: rotate(45deg);
+    right: 50%;
+
+}
+
+.chevron-icon .icon-bar.right {
+    transform-origin: left;
+    transform: rotate(-45deg);
+    left: 50%;
+}
+
+.expansion-panel.active .expansion-header .chevron-icon .icon-bar.left {
+    transform: rotate(-45deg);
+}
+
+.expansion-panel.active .expansion-header .chevron-icon .icon-bar.right {
+    transform: rotate(45deg);
 }
 
 @media (max-width: 1024px) {

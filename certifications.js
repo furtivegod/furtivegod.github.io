@@ -1,4 +1,4 @@
-(function() {
+(function () {
     // Certifications data
     const certifications = [
         {
@@ -65,7 +65,7 @@
                 "RESTful APIs",
                 "MVC",
                 "Object-Oriented Programming (OOP)",
-                "Front And Back Ends",                
+                "Front And Back Ends",
                 "Microservices Architecture",
                 "Heterogeneous Database System",
                 "DevOps",
@@ -73,6 +73,43 @@
                 "Dockerfile Creation"
             ],
             certificateUrl: "https://coursera.org/share/343d86035d7276bf0f1c986ea1eb5688"
+        },
+        {
+            id: 4,
+            title: "Microsoft Full-Stack Developer(Microsoft)",
+            issuer: "Microsoft",
+            date: "July 4, 2025",
+            duration: "9 months (10 hours/week)",
+            badge: "assets/certificates/MSFT-stacked-logo_FINAL.png",
+            courses: [
+                "Foundations of Coding Full-Stack",
+                "Introduction to Programming With C#",
+                "Introduction to Web Development",
+                "Blazor for Front-End Development",
+                "Back-End Development with .NET",
+                "Database Integration and Management",
+                "Full-Stack Integration",
+                "Security and Authentication",
+                "Performance Optimization and Scalability",
+                "Data Structures and Algorithms",
+                "Deployment and DevOps",
+                "Full-Stack Developer Capstone Project"
+            ],
+            skills: [
+                "Continuous Integration",
+                "GitHub",
+                "Load Balancing",
+                "Graph Theory",
+                "Git (Version Control System)",
+                "CI/CD",
+                "Full-Stack Web Development",
+                "Scalability",
+                "Authentications",
+                "SQL",
+                "Object Oriented Programming (OOP)",
+                "ASP.NET"
+            ],
+            certificateUrl: "https://coursera.org/share/c91756ee16bc6b9d812ed963110c4468"
         }
     ];
 
@@ -85,23 +122,35 @@
                         <img src="${cert.badge}" alt="${cert.issuer} Certification">
                     </div>
                     <div class="cert-title">
-                        <h3>${cert.title}</h3>
+                        <h3 style="margin-bottom: 0.5rem">${cert.title}</h3>
+                        <p class="date">Issued ${cert.date}</p>
+                        <p class="duration">${cert.duration}</p>
                     </div>
+                    <a href="${cert.certificateUrl}" target="_blank" class="btn">View certificate</a>
                 </div>
-                <p class="date">Issued ${cert.date}</p>
                 <div class="cert-details">
-                    <p class="duration">${cert.duration}</p>
-                    <ul class="courses">
-                        ${cert.courses.map(course => `<li>${course}</li>`).join('')}
-                    </ul>
                     <div class="skills-gained">
-                        <h4>Skills I Gained</h4>
+                        <!-- <h4>Skills I Gained</h4> -->
                         <div class="skill-tags">
                             ${cert.skills.map(skill => `<span>${skill}</span>`).join('')}
                         </div>
                     </div>
+                    <div class="expansion-panel">
+                        <div class="expansion-content">
+                            <ul class="courses">
+                                ${cert.courses.map(course => `<li>${course}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div class="expansion-header">
+                            <button class="btn">
+                             <span class="chevron-icon">
+                                <span class="icon-bar left"></span>
+                                <span class="icon-bar right"></span>
+                            </span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <a href="${cert.certificateUrl}" target="_blank" class="btn">View certificate</a>
             </div>
         `;
     }
@@ -110,7 +159,7 @@
     function renderCertifications() {
         const certGrid = document.querySelector('.cert-grid');
         console.log('Cert Grid Element:', certGrid); // Debug log
-        
+
         if (certGrid) {
             console.log('Rendering certifications...'); // Debug log
             certGrid.innerHTML = certifications.map(cert => createCertCard(cert)).join('');
@@ -124,5 +173,12 @@
     document.addEventListener('DOMContentLoaded', () => {
         console.log('DOM Content Loaded'); // Debug log
         renderCertifications();
+
+        document.querySelectorAll('.expansion-header button').forEach(button => {
+            button.addEventListener('click', function () {
+                const panel = this.closest('.expansion-panel');
+                panel.classList.toggle('active');
+            });
+        });
     });
 })(); 
